@@ -22,6 +22,7 @@ public class CircularLinkedList<E extends Comparable> implements ListInterface<E
             if (index == numItems)
                 tail = newNode;
             numItems++;
+            showCurrentArray();
         }
     }
 
@@ -32,6 +33,7 @@ public class CircularLinkedList<E extends Comparable> implements ListInterface<E
         prevNode.next = newNode;
         tail = newNode;
         numItems++;
+        showCurrentArray();
     }
 
     @Override
@@ -44,6 +46,7 @@ public class CircularLinkedList<E extends Comparable> implements ListInterface<E
                 tail = prevNode;
             }
             numItems--;
+            showCurrentArray();
             return rItem;
         }
         return null;
@@ -59,6 +62,7 @@ public class CircularLinkedList<E extends Comparable> implements ListInterface<E
             if(currNode.item.compareTo(item) == 0) {
                 prevNode.next = currNode.next;
                 numItems--;
+                showCurrentArray();
                 return true;
             }
         }
@@ -77,6 +81,7 @@ public class CircularLinkedList<E extends Comparable> implements ListInterface<E
     public void set(int index, E item) {
         if(index >= 0 && index <= numItems-1) {
             getNode(index).item = item;
+            showCurrentArray();
         }
     }
 
@@ -117,5 +122,21 @@ public class CircularLinkedList<E extends Comparable> implements ListInterface<E
             return currNode;
         }
         return null;
+    }
+
+    private void showCurrentArray() {
+        if (numItems == 0) {
+            System.out.println("리스트가 비어있습니다.\n");
+            return;
+        }
+
+        // tail.next는 더미 헤드이므로, 실제 첫 번째 데이터는 tail.next.next 입니다.
+        Node<E> targetNode = tail.next.next;
+
+        for (int i = 0; i < numItems; i++) {
+            System.out.println(i + " 번째 수 : " + targetNode.item);
+            targetNode = targetNode.next;
+        }
+        System.out.println();
     }
 }
