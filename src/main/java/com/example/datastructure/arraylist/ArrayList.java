@@ -19,25 +19,25 @@ public class ArrayList<E> implements ListInterface<E> {
     }
 
     @Override
-    public void add(int index, E x) {
-        if (numItems >= item.length || index < 0 || index > numItems) {
+    public void add(int index, E item) {
+        if (numItems >= this.item.length || index < 0 || index > numItems) {
             /* 에러 처리: Throw IndexOutOfBoundsException 등 */
         } else {
             for (int i = numItems - 1; i >= index; i--) {
-                item[i + 1] = item[i];
+                this.item[i + 1] = this.item[i];
             }
-            item[index] = x;
+            this.item[index] = item;
             numItems++;
             showCurrentArray();
         }
     }
 
     @Override
-    public void append(E x) {
-        if (numItems >= item.length) {
+    public void append(E item) {
+        if (numItems >= this.item.length) {
             /* 에러 처리 */
         } else {
-            item[numItems++] = x;
+            this.item[numItems++] = item;
             showCurrentArray();
         }
     }
@@ -59,10 +59,10 @@ public class ArrayList<E> implements ListInterface<E> {
     }
 
     @Override
-    public boolean removeItem(E x) {
+    public boolean removeItem(E item) {
         int k = 0;
         // 제네릭에서는 compareTo 대신 equals를 사용하는 것이 일반적입니다.
-        while (k < numItems && !item[k].equals(x)) {
+        while (k < numItems && !this.item[k].equals(item)) {
             k++;
         }
 
@@ -70,9 +70,9 @@ public class ArrayList<E> implements ListInterface<E> {
             return false;
         } else {
             for (int i = k; i <= numItems - 2; i++) {
-                item[i] = item[i + 1];
+                this.item[i] = this.item[i + 1];
             }
-            item[numItems - 1] = null; // 메모리 누수 방지
+            this.item[numItems - 1] = null; // 메모리 누수 방지
             numItems--;
             showCurrentArray();
             return true;
@@ -88,16 +88,16 @@ public class ArrayList<E> implements ListInterface<E> {
     }
 
     @Override
-    public void set(int index, E x) {
+    public void set(int index, E item) {
         if (index >= 0 && index <= numItems - 1) {
-            item[index] = x;
+            this.item[index] = item;
         }
     }
 
     @Override
-    public int indexOf(E x) {
+    public int indexOf(E item) {
         for (int i = 0; i < numItems; i++) {
-            if (item[i].equals(x)) {
+            if (this.item[i].equals(item)) {
                 return i;
             }
         }

@@ -1,13 +1,13 @@
 package com.example.datastructure.arraylist;
 
 public interface ListInterface<E> {
-    void add(int i, E x);
-    void append(E x);
-    E remove(int i);
-    boolean removeItem(E x);
-    E get(int i);
-    void set(int i, E x);
-    int indexOf(E x);
+    void add(int index, E item);
+    void append(E item);
+    E remove(int index);
+    boolean removeItem(E item);
+    E get(int index);
+    void set(int index, E item);
+    int indexOf(E item);
     int len();
     boolean isEmpty();
     void clear();
