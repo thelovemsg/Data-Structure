@@ -48,6 +48,20 @@ public class LinkedList<E extends Comparable<E>> implements ListInterface<E> {
         return null;
     }
 
+    public void remove(int index, int k) {
+        if (index >= 0 && index <= numItems -1) {
+            for (int j=0; j<k; j++) {
+                Node<E> prevNode = getNode(index-1+j);
+                if(prevNode != null) {
+                    Node<E> currNode = prevNode.next;
+                    prevNode.next = currNode.next;
+                    numItems--;
+                }
+            }
+        }
+        showCurrentArray();
+    }
+
     @Override
     public boolean removeItem(E item) {
         Node<E> prevNode, currNode = head;
@@ -108,6 +122,31 @@ public class LinkedList<E extends Comparable<E>> implements ListInterface<E> {
     public void clear() {
         numItems = 0;
         head = new Node<>(null, null);
+    }
+
+    public void concat(LinkedList<E> list1, LinkedList<E> list2) {
+        Node<E> target = head;
+        while(target.next != null) {
+            target = target.next;
+        }
+
+        Node<E> node1 = list1.getNode(0);
+        while(node1 != null) {
+            target.next = new Node<>(node1.item, null);
+            node1 = node1.next;
+            target = target.next;
+            this.numItems++; // 상태 동기화
+        }
+
+        Node<E> node2 = list2.getNode(0);
+        while(node2 != null) {
+            target.next = new Node<>(node2.item, null);
+            node2 = node2.next;
+            target = target.next;
+            this.numItems++; // 상태 동기화
+        }
+
+        showCurrentArray();
     }
 
     private Node<E> getNode(int index) {
