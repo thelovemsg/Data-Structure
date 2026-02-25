@@ -1,8 +1,9 @@
 package com.example.datastructure.linkedlist;
 
 import com.example.datastructure.arraylist.ListInterface;
+import com.example.datastructure.common.Node;
 
-public class LinkedList<E extends Comparable<E>> implements ListInterface<E> {
+public class LinkedList<E extends Comparable> implements ListInterface<E> {
     private Node<E> head;
     private int numItems;
 

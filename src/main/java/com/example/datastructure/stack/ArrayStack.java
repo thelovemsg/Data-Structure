@@ -19,7 +19,15 @@ public class ArrayStack<E> implements StackInterface<E>{
 
     @Override
     public void push(E newItem) {
-        if (isFull()) { /* 에러 처리*/ }
+        if (isFull()) {
+            int length = stack.length;
+            E newStack[] = (E[]) new Object[length];
+            for (int i = 0; i < length; i++) {
+                newStack[i] = stack[i];
+            }
+
+            stack = newStack;
+        }
         else stack[++topIndex] = newItem;
         showItems();
     }

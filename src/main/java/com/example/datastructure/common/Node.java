@@ -1,4 +1,4 @@
-package com.example.datastructure.linkedlist;
+package com.example.datastructure.common;
 
 public class Node<E> {
     public E item;

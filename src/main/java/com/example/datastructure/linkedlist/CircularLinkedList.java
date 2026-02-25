@@ -1,6 +1,7 @@
 package com.example.datastructure.linkedlist;
 
 import com.example.datastructure.arraylist.ListInterface;
+import com.example.datastructure.common.Node;
 
 public class CircularLinkedList<E extends Comparable> implements ListInterface<E> {
 
